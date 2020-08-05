@@ -1,21 +1,21 @@
 
 <br>
 
-[![CircleCI](https://img.shields.io/circleci/build/github/kboice23/Twilio-Scheduled-Chat-Channel-Cleanup?logo=CircleCI&token=664f26ce72f1d912377944e7b7d643810bab39d0)](https://app.circleci.com/pipelines/github/kboice23/Twilio-Scheduled-Chat-Channel-Cleanup)
+[![CircleCI](https://img.shields.io/circleci/build/github/kboice23/Google-Utility-Script?logo=CircleCI&token=03bb2aa6c5c825f09e352373a96b9651f2180162)](https://app.circleci.com/pipelines/github/kboice23/Google-Utility-Script)
 
 <br>
 
 # Home
 
-Welcome to the Twilio Scheduled Chat Channel Cleanup project.
+Welcome to the Google Utility Script project.
 
-This is a NodeJS utility script that I created to run common Twilio Chat cleanup functions on a nightly schedule.  It does things like delete old chat rooms and chat users to ensure you never hit the limit Twilio places on your account (and just for good hygiene).
+This is a NodeJS utility script and set of microservices that I created to run common Google cleanup functions on a nightly schedule as well as on-demand via webhooks.
 
 <br>
 
 ## Features and Functionality
 
-- Automatically cleans up old Twilio Programmable Chat Rooms and Users from your account on a daily basis
+- Automatically cleans up old Google Contacts and Users from your account on a daily basis
 - Webhook endpoints for triggering cleanup from external events or command line rather than a schedule
 - Granular configuration to turn specific cleanup activities off or on from a single file
 - Multi-channel alerts and notifications upon successful runs and errors/exceptions
@@ -39,8 +39,8 @@ This is a NodeJS utility script that I created to run common Twilio Chat cleanup
 ### Clone the project, and install the dependencies
 
 ```bash
-$ git clone https://github.com/kboice23/Twilio-Scheduled-Chat-Channel-Cleanup
-$ cd Twilio-Scheduled-Chat-Channel-Cleanup
+$ git clone https://github.com/kboice23/Google-Utility-Script
+$ cd Google-Utility-Script
 $ npm install
 ```
 
@@ -48,7 +48,7 @@ $ npm install
 
 ### Configure your environment
 
-> **Update with your own Twilio IDs, Keys and Tokens**: _and update keys for any monitoring tools you'd like_
+> **Update with your own Google  IDs, Keys and Tokens**: _and update keys for any monitoring tools you'd like_
 
 
 ```bash
@@ -57,17 +57,17 @@ $ nano .env
 ```
 
 ```bash
-# Twilio Cleanup
+# Google Cleanup
 CONFIG_CLEAN_CHAT_ROOMS=true
 CONFIG_CLEAN_CHAT_USERS= true
 
 # Monitoring and Logging
 CONFIG_TRACK_IN_SEGMENT = true;
 
-# Twilio Account
-TWILIO_ACCOUNT_SID=ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-TWILIO_AUTH_TOKEN=fdXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-TWILIO_CHAT_SERVICE_SID=ISXXXXXXXXXXXXXXXXXXXXXXXX
+# Google Account
+GOOGLE_ACCOUNT_SID=ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+GOOGLE_AUTH_TOKEN=fdXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+GOOGLE_CHAT_SERVICE_SID=ISXXXXXXXXXXXXXXXXXXXXXXXX
 
 # Monitoring and Logging Accounts
 MONITORING_SEGMENT_KEY_NODEJS=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -75,21 +75,21 @@ MONITORING_SEGMENT_KEY_NODEJS=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 <br>
 
-### Verify all is working by populating some test chat rooms in Twilio
+### Verify all is working by populating some test contacts in Google 
 
 ```bash
 $ npm run populate
 ```
 
 ```bash
-Created Twilio chat room CHf9c7563e5a7942dda6b18d578e5b662e
+Created Google Contact CHf9c7563e5a7942dda6b18d578e5b662e
 ```
 
 <br>
 
-#### You can double check that the room was created in the Twilio console via a web browser
+#### You can double check that the room was created in the Google console via a web browser
 
-![Twilio Chat Console Rooms List](https://kboice23.github.io/Twilio-Scheduled-Chat-Channel-Cleanup/images/readme-twilio-console-572px.png)
+![Google Contact Console Rooms List](https://kboice23.github.io/Google-Utility-Script/images/readme-Google-console-572px.png)
 
 <br>
 
@@ -107,7 +107,7 @@ $ npm run dev
 [nodemon] watching path(s): *.*
 [nodemon] watching extensions: js,mjs,json
 [nodemon] starting `node index.js`
-    Waiting until 2AM each day to delete all old chat channels
+    Waiting until 2AM each day to delete all old contacts
 [nodemon] restarting due to changes...
 [nodemon] starting `node index.js`
 ```
@@ -128,12 +128,12 @@ $ npm run debug
 [nodemon] starting `node --inspect index.js`
 Debugger listening on ws://127.0.0.1:9229/5cbb7824-c467-489f-868a-972892282165
 For help, see: https://nodejs.org/en/docs/inspector
-    Waiting until 2AM each day to delete all old chat channels
+    Waiting until 2AM each day to delete all old contacts
 [nodemon] restarting due to changes...
 [nodemon] starting `node --inspect index.js`
 Debugger listening on ws://127.0.0.1:9229/e5514ff8-ceae-4e2f-80e7-bcd3bbe6a557
 For help, see: https://nodejs.org/en/docs/inspector
-    Waiting until 2AM each day to delete all old chat channels
+    Waiting until 2AM each day to delete all old contacts
 ```
 
 <br>
@@ -145,7 +145,7 @@ $ npm run server
 ```
 
 ```bash
-    Waiting until 2AM each day to delete all old chat channels
+    Waiting until 2AM each day to delete all old contacts
 ```
 
 <br>
@@ -165,7 +165,7 @@ $ npm run devNow
 [nodemon] to restart at any time, enter `rs`
 [nodemon] watching path(s): *.*
 [nodemon] watching extensions: js,mjs,json
-    Successfully deleted all old chat channels
+    Successfully deleted all old contacts
 [nodemon] restarting due to changes...
 ```
 
@@ -184,11 +184,11 @@ $ npm run debugNow
 [nodemon] watching extensions: js,mjs,json
 Debugger listening on ws://127.0.0.1:9229/5cbb7824-c467-489f-868a-972892282165
 For help, see: https://nodejs.org/en/docs/inspector
-    Successfully deleted all old chat channels
+    Successfully deleted all old contacts
 [nodemon] restarting due to changes...
 Debugger listening on ws://127.0.0.1:9229/e5514ff8-ceae-4e2f-80e7-bcd3bbe6a557
 For help, see: https://nodejs.org/en/docs/inspector
-    Successfully deleted all old chat channels
+    Successfully deleted all old contacts
 ```
 
 <br>
@@ -200,7 +200,7 @@ $ npm run serverNow
 ```
 
 ```bash
-    Successfully deleted all old chat channels
+    Successfully deleted all old contacts
 ```
 
 <br>

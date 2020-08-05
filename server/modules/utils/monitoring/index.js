@@ -9,8 +9,8 @@ const HandleGlobalErrors = require('../errors');
  * @author Keith Boice
  * @see {@link https://segment.com/|Get free SegmentIO account}
  * @see {@link https://segment.com/docs/connections/sources/catalog/libraries/server/node/quickstart/|SegmentIO NodeJS Quickstart}
- * @example <caption>Send user identity and/or an action to Segment to track</caption>
- * Monitoring.SegmentIO( {userId: 12345, identity: 'keith boice', roomId: 9876, roomName: 'chat room A' } )
+ * @example <caption>Send contact identity and/or an action to Segment to track</caption>
+ * Monitoring.SegmentIO( {contactId: 12345, contactName: 'keith boice' } )
  *  .then((response) => {
  *      console.log(`Sent to SegmentIO successfully`);
  *   })

@@ -10,17 +10,16 @@ const router = Router();
 // ##############################
 
 /**
- * @name /api/twilio/chat/cleanup
- * @namespace /api/twilio/chat/cleanup
- * @description Provides an API endpoint for triggering Twilio Chat Cleanup (bypasses schedule)
+ * @name /api/google/contacts/cleanup
+ * @namespace /api/google/contacts/cleanup
+ * @description Provides an API endpoint for triggering Google Contacts Cleanup (bypasses schedule)
  * @global
- * @param {boolean} cleanRooms - Specifies that chat rooms will be purged
- * @param {boolean} cleanUsers - Specifies that chat users will be purged
+ * @param {boolean} cleanContacts - Specifies that contacts will be purged
  * @returns {JSON} responseBody - Success or fail message with relevant details
  * @author Keith Boice
  * @see {@link https://zapier.com/blog/what-are-webhooks/|What are Webhooks?}
- * @example <caption>Example using javascript 'fetch' to trigger the job to purge both Twilio chat rooms and chat users</caption>
- * fetch(`/api/twilio/chat/cleanup?cleanRooms=true&cleanUsers=true`)
+ * @example <caption>Example using javascript 'fetch' to trigger the job to purge both Google contacts rooms and contacts users</caption>
+ * fetch(`/api/google/contacts/cleanup?clean=true&cleanUsers=true`)
  * .then(response => response.json())
  * .then(state => this.setState(state));
  * Returns
@@ -29,8 +28,8 @@ const router = Router();
  *  }
  */
 router.get(
-    '/twilio/chat/cleanup',
-    [query('cleanRooms').isLength({ min: 1 }), query('cleanUsers').isLength({ min: 1 })],
+    '/google/contacts/cleanup',
+    [query('cleanUsers').isLength({ min: 1 })],
     (req, res) => {
 
         // Verify that the request contains required parameters.
@@ -39,13 +38,13 @@ router.get(
             return res.status(422).json({ status: `failed` });
         }
 
-        // Call our Twilio module for chat cleanup.
-        const Twilio = require('../modules/twilio/index');
+        // Call our Google module for contacts cleanup.
+        const Google = require('../modules/google/index');
 
-        console.log(`Running Twilio.CleanupChatRooms`);
+        console.log(`Running Google.CleanupContacts`);
 
-        if (req.query.cleanRooms) {
-            Twilio.CleanupChatRooms()
+        if (req.query.clean) {
+            Google.CleanupContacts()
                 .then((response) => {
                     res.setHeader('Content-Type', 'application/json');
                     res.status(200);

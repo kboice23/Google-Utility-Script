@@ -15,7 +15,7 @@ app = express();
 const cron = require("node-cron");
 
 // Module for handling Twilio API calls.
-const Twilio = require('../server/modules/twilio');
+const Twilio = require('../server/modules/google');
 
 // Run daily at 2 AM.
 /*
