@@ -15,4 +15,5 @@ node_modules/
 /*.bk
 
 # Google API service account credentials
-/My Project-f2388fa5387d.json
+/my-project-f2388fa5387d.json
+my-project-f2388fa5387d.json
