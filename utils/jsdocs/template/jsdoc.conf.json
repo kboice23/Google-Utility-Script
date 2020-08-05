@@ -1,0 +1,36 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc","closure"]
+  },
+  "plugins": [
+    "node_modules/jsdoc/plugins/markdown",
+    "node_modules/jsdoc/plugins/summarize",
+    "node_modules/jsdoc/plugins/sourcetag",
+    "node_modules/jsdoc/plugins/commentConvert",
+    "node_modules/jsdoc-parse"
+  ],
+  "recurseDepth": 10,
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": false,
+    "dateFormat": "ddd MMM Do YYYY",
+    "outputSourceFiles": true,
+    "outputSourcePath": true,
+    "systemName": "Twilio Scheduled Chat Cleanup",
+    "footer": "",
+    "copyright": "Copyright © 2020.",
+    "navType": "vertical",
+    "theme": "cosmo",
+    "linenums": true,
+    "collapseSymbols": false,
+    "inverseNav": false,
+    "protocol": "html://",
+    "methodHeadingReturns": true,
+    "search": true
+  },
+  "markdown": {
+    "parser": "gfm",
+    "hardwrap": true
+  }
+}
