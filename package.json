@@ -41,7 +41,7 @@
     "jsdoc": "^3.6.5",
     "jsdoc-to-markdown": "^6.0.1",
     "nodemon": "^2.0.4",
-    "supertest": "^4.0.2",
+    "supertest": "^6.0.0",
     "tz-offset": "0.0.2"
   },
   "jest": {
